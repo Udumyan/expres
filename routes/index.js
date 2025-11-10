@@ -26,22 +26,22 @@ router.post("/register", readDB, async (req, res) => {
     const { users } = res.locals;
     const valbody = await schema.validateAsync(req.body);
 
-    // 🔒 Գաղտնաբառի hash
+    // password hash
     const hashed = await bcryptjs.hash(password, 10);
 
-    // ⚠️ Ստուգում՝ արդյոք email-ը արդեն գրանցված ա
+    // email-i krknutyan stugum 
     const existingUser = users.find((u) => u.email === email);
     if (existingUser) {
       return res.status(404).json({
-        message: "Այս email-ով օգտատեր արդեն գոյություն ունի",
+        message: "A user with this email already exists.",
       });
     }
 
-    // 👤 Նոր user օբյեկտ
+    // new user 
     const newUser = { id: Date.now(), name, email, password: hashed };
     users.push(newUser);
 
-    // 🗂 Գրում ենք users.json-ի մեջ
+    //users.json
     await fs.writeFile(
       createPath("db", "users.json"),
       JSON.stringify(users, null, 2)
