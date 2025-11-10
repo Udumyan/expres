@@ -94,3 +94,25 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+
+a[href="/login"],
+a[href="/register"] {
+  display: inline-block;
+  background: linear-gradient(135deg, #38b000, #008000);
+  color: #fff;
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0, 128, 0, 0.3);
+  transition: 0.3s;
+  margin: 10px;
+}
+
+a[href="/login"]:hover,
+a[href="/register"]:hover {
+  background: linear-gradient(135deg, #2d8600, #006400);
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0, 128, 0, 0.4);
+}
